@@ -1,0 +1,8 @@
+Area_D = CALCULATE(COUNTROWS(Packing_details); Parts__info[Area] = "D")
+Area_mezza37 = CALCULATE(COUNTROWS(Packing_details); Parts__info[Area] = "A") + CALCULATE(COUNTROWS(Packing_details); Parts__info[Area] = "B")
+Area_rek = CALCULATE(COUNTROWS(Packing_details)) - [Area_mezza37] -  [Area_D] - [No_location_found]
+collis_met_ompak = CALCULATE(COUNTROWS(Packing_details_grouped)) - [collis_zonder_ompak]
+collis_zonder_ompak = CALCULATE(COUNTROWS(Packing_details_grouped); Packing_details_grouped[Count] = 1)
+No_location_found = CALCULATE(COUNTROWS(Packing_details); Parts__info[Area] = "") 
+orderlines_met_ompak = CALCULATE(COUNTROWS(Packing_details); Packing_details_grouped[Count] <> 1)
+total_orderlines = CALCULATE( COUNTROWS(Packing_details))
